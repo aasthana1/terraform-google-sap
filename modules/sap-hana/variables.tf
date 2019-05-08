@@ -45,6 +45,7 @@ variable "linux_image_family" {
 variable "linux_image_project" {
   description = "Project name containing the linux image"
 }
+
 variable "sap_hana_deployment_bucket" {
   description = "SAP hana deployment bucket"
 }
@@ -52,7 +53,7 @@ variable "sap_hana_deployment_bucket" {
 # Mod to SCR
 variable "sap_deployment_debug" {
   description = "SAP hana deployment debug"
-  default = "false"
+  default     = "false"
 }
 
 variable "post_deployment_script" {
@@ -70,6 +71,7 @@ variable "sap_hana_instance_number" {
 variable "sap_hana_sidadm_password" {
   description = "SAP hana SID admin password"
 }
+
 variable "sap_hana_system_password" {
   description = "SAP hana system password"
 }
@@ -81,7 +83,6 @@ variable "sap_hana_sidadm_uid" {
 variable "sap_hana_sapsys_gid" {
   description = "SAP hana sap system gid"
 }
-
 
 variable "autodelete_disk" {
   description = "Delete backend disk along with instance"
@@ -100,10 +101,11 @@ variable "pd_ssd_size" {
   description = "Persistent disk size in GB"
 }
 
+/*
 variable "pd_standard_size" {
   description = "Persistent disk size in GB"
 }
-
+*/
 # TODO: The service account to run Terraform should be different the one associated with the VM.
 variable "service_account" {
   description = "Service to run the terrform"
@@ -113,5 +115,5 @@ variable "service_account" {
 variable "network_tags" {
   type        = "list"
   description = "List of network tags"
-  default = [""]
+  default     = [""]
 }
