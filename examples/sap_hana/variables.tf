@@ -125,13 +125,6 @@ variable "pd_ssd_size" {
   default     = 450
 }
 
-/*
-variable "pd_standard_size" {
-  description = "Persistent disk size in GB"
-  default     = 50
-}
-*/
-
 variable "service_account" {
   description = "Service to run terraform"
 }

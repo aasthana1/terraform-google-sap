@@ -14,20 +14,12 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  description = "Project name to deploy the resources"
-}
-
-variable "service_account" {
-  description = "Service to run the terraform"
-}
-
-variable "instance_type" {
-  description = "Compute Engine instance Type"
-  # Should add minimal instance type here if possible.
-}
-
-variable "region" {
-  description = "Region where to deploy resources"
-  default = "us-central1"
+module "example" {
+  source                     = "../../../examples/sap_hana"
+  project_id                 = "${var.project_id}"
+  service_account            = "${var.service_account}"
+  instance_type              = "${var.instance_type}"
+  sap_hana_deployment_bucket = "${var.sap_hana_deployment_bucket}"
+  subnetwork                 = "default"
+  network_tags               = ["foo"]
 }

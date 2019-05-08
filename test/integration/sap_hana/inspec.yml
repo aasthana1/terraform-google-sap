@@ -1,4 +1,4 @@
-name: simple_example
+name: sap_hana
 depends:
   - name: inspec-gcp
     git: https://github.com/inspec/inspec-gcp.git
@@ -16,4 +16,3 @@ attributes:
   - name: region
     required: true
     type: string
-    
