@@ -101,11 +101,6 @@ variable "pd_ssd_size" {
   description = "Persistent disk size in GB"
 }
 
-/*
-variable "pd_standard_size" {
-  description = "Persistent disk size in GB"
-}
-*/
 # TODO: The service account to run Terraform should be different the one associated with the VM.
 variable "service_account" {
   description = "Service to run the terrform"

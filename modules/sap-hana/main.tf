@@ -52,7 +52,6 @@ resource "google_compute_instance" "gcp_sap_hana" {
 
   boot_disk {
     auto_delete = "${var.autodelete_disk}"
-    device_name = "${var.instance_name}-boot"
 
     initialize_params {
       image = "projects/${var.linux_image_project}/global/images/family/${var.linux_image_family}"
@@ -63,8 +62,6 @@ resource "google_compute_instance" "gcp_sap_hana" {
 
   attached_disk {
     source = "${google_compute_disk.gcp_sap_hana_sd_0.self_link}"
-
-    device_name = "${var.instance_name}-mnt00001"
   }
 
   attached_disk {
