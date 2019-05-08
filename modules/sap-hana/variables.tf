@@ -97,6 +97,10 @@ variable "boot_disk_type" {
   description = "The type of data disk: PD_SSD or PD_HDD."
 }
 
+variable "disk_type" {
+  description = "The type of data disk: PD_SSD or PD_HDD."
+}
+
 variable "pd_ssd_size" {
   description = "Persistent disk size in GB"
 }
@@ -111,4 +115,16 @@ variable "network_tags" {
   type        = "list"
   description = "List of network tags"
   default     = [""]
+}
+
+variable "compute_disk_1" {
+  description = "First compute disk name"
+}
+
+variable "compute_disk_2" {
+  description = "Second compute disk name"
+}
+
+variable "compute_address" {
+  description = "Compute address"
 }

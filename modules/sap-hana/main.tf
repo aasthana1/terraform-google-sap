@@ -19,20 +19,20 @@ terraform {
 }
 
 resource "google_compute_disk" "gcp_sap_hana_sd_0" {
-  name = "sap-hana-pd-ssd-0"
-  type = "pd-ssd"
+  name = "${var.compute_disk_1}"
+  type = "${var.disk_type}"
   zone = "${var.zone}"
   size = "${var.pd_ssd_size}"
 }
 
 resource "google_compute_address" "gcp_sap_hana_ip" {
-  name   = "gcp-sap-hana-ip"
+  name   = "${var.compute_address}"
   region = "${var.region}"
 }
 
 resource "google_compute_disk" "gcp_sap_hana_sd_1" {
-  name = "sap-hana-pd-ssd-1"
-  type = "pd-ssd"
+  name = "${var.compute_disk_2}"
+  type = "${var.disk_type}"
   zone = "${var.zone}"
   size = "${var.pd_ssd_size}"
 }

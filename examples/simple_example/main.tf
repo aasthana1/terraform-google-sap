@@ -31,14 +31,17 @@ module "gcp_sap_hana" {
   instance_name          = "${var.instance_name}"
   instance_type          = "n1-highmem-16"
   zone                   = "us-central1-b"
-
-  project_id      = "${var.project_id}"
-  region          = "${var.region}"
-  service_account = "${var.service_account}"
-  boot_disk_type  = "pd-ssd"
-  boot_disk_size  = 64
-  autodelete_disk = "true"
-  pd_ssd_size     = 450
+  disk_type              = "pd-ssd"
+  project_id             = "${var.project_id}"
+  region                 = "${var.region}"
+  service_account        = "${var.service_account}"
+  boot_disk_type         = "pd-ssd"
+  boot_disk_size         = 64
+  autodelete_disk        = "true"
+  pd_ssd_size            = 450
+  compute_disk_1         = "sap-hana-disk-1"
+  compute_disk_2         = "sap-hana-disk-2"
+  compute_address        = "sap-hana-address-ip"
 
   #pd_standard_size = 50
 
