@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
-output "bucket_name" {
-  description = "The name of the bucket."
-  value       = "${module.sap.bucket_name}"
+output "instance_gcp_sap_hana_name" {
+ value = "${google_compute_instance.gcp_sap_hana.name}"
+}
+
+output "instance_zone" {
+ value = "${google_compute_instance.gcp_sap_hana.zone}"
+}
+
+output "gcp_sap_hana_instance_machine_type" {
+  value = "${google_compute_instance.gcp_sap_hana.machine_type}"
 }

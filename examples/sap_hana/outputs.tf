@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  description = "The ID of the project in which to provision resources."
-  type        = "string"
+output "sap_hana_sid" {
+  description = "SAP Hana SID user"
+  value       = "${var.sap_hana_sid}"
 }
 
-variable "bucket_name" {
-  description = "The name of the bucket to create."
-  type        = "string"
+output "instance_name" {
+  description = "Name of instance"
+  value = "${var.instance_name}"
 }

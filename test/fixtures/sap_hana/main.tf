@@ -14,7 +14,12 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  description = "The ID of the project in which to provision resources."
-  type        = "string"
+module "example" {
+  source                     = "../../../examples/sap_hana"
+  project_id                 = "${var.project_id}"
+  service_account            = "${var.service_account}"
+  instance_type              = "${var.instance_type}"
+  sap_hana_deployment_bucket = "${var.sap_hana_deployment_bucket}"
+  subnetwork                 = "sap-dev-demo"
+  network_tags               = ["sap-hana"]
 }
