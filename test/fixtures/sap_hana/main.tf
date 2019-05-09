@@ -20,6 +20,6 @@ module "example" {
   service_account            = "${var.service_account}"
   instance_type              = "${var.instance_type}"
   sap_hana_deployment_bucket = "${var.sap_hana_deployment_bucket}"
-  subnetwork                 = "default"
-  network_tags               = ["foo"]
+  subnetwork                 = "sap-dev-demo"
+  network_tags               = ["sap-hana"]
 }
