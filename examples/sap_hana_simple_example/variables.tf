@@ -25,10 +25,12 @@ variable "zone" {
 
 variable "region" {
   description = "Region to deploy the resources. Should be in the same region as the zone."
+  default     = "us-central1"
 }
 
 variable "instance_name" {
   description = "A unique name for the resource, required by GCE. Changing this forces a new resource to be created."
+  default     = "sap-hana-simple-example"
 }
 
 variable "instance_type" {
@@ -36,7 +38,7 @@ variable "instance_type" {
 }
 
 variable "linux_image_family" {
-  description = "GCE image family."
+  description = "GCE linux image family."
 }
 
 variable "linux_image_project" {
@@ -45,17 +47,7 @@ variable "linux_image_project" {
 
 variable "autodelete_disk" {
   description = "Whether the disk will be auto-deleted when the instance is deleted."
-  default     = "false"
-}
-
-variable "disk_name_0" {
-  description = "Name of first disk."
-  default     = "sap-hana-pd-sd-0"
-}
-
-variable "disk_name_1" {
-  description = "Name of second disk."
-  default     = "sap-hana-pd-sd-1"
+  default     = true
 }
 
 variable "disk_type" {
@@ -63,15 +55,16 @@ variable "disk_type" {
 }
 
 variable "boot_disk_size" {
-  description = "Root disk size in GB."
+  description = "Root disk size in GB"
 }
 
 variable "boot_disk_type" {
   description = "The GCE boot disk type. May be set to pd-standard (for PD HDD) or pd-ssd."
+  default     = "pd-ssd"
 }
 
 variable "pd_ssd_size" {
-  description = "Persistent disk size in GB."
+  description = "Persistent disk size in GB"
   default     = ""
 }
 
@@ -113,11 +106,13 @@ variable "startup_script" {
 }
 
 variable "sap_hana_sid" {
-  description = "SAP HANA System Identifier. When using the SID to enter a user session, like this for example, `su - [SID]adm`, make sure that [SID] is in lower case."
+  description = "SAP HANA System Identifier"
+  default     = "D10"
 }
 
 variable "sap_hana_instance_number" {
   description = "SAP HANA instance number"
+  default     = 10
 }
 
 variable "sap_hana_sidadm_password" {
@@ -130,8 +125,10 @@ variable "sap_hana_system_password" {
 
 variable "sap_hana_sidadm_uid" {
   description = "SAP HANA System Identifier Admin UID"
+  default     = 900
 }
 
 variable "sap_hana_sapsys_gid" {
   description = "SAP HANA SAP System GID"
+  default     = 900
 }

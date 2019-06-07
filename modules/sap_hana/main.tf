@@ -18,31 +18,40 @@ terraform {
   required_version = "~> 0.11.0"
 }
 
-resource "google_compute_disk" "gcp_sap_hana_sd_0" {
-  name = "${var.compute_disk_1}"
-  type = "${var.disk_type}"
-  zone = "${var.zone}"
-  size = "${var.pd_ssd_size}"
+module "sap_hana" {
+  source        = "./sap_hana_python"
+  instance-type = "${var.instance_type}"
 }
 
-resource "google_compute_address" "gcp_sap_hana_ip" {
-  name   = "${var.compute_address}"
-  region = "${var.region}"
+resource "google_compute_disk" "gcp_sap_hana_sd_0" {
+  project = "${var.project_id}"
+  name    = "${var.disk_name_0}"
+  type    = "${var.disk_type}"
+  zone    = "${var.zone}"
+  size    = "${var.pd_ssd_size != "" ? var.pd_ssd_size : module.sap_hana.diskSize}"
 }
 
 resource "google_compute_disk" "gcp_sap_hana_sd_1" {
-  name = "${var.compute_disk_2}"
-  type = "${var.disk_type}"
-  zone = "${var.zone}"
-  size = "${var.pd_ssd_size}"
+  project = "${var.project_id}"
+  name    = "${var.disk_name_1}"
+  type    = "${var.disk_type}"
+  zone    = "${var.zone}"
+  size    = "${var.pd_ssd_size != "" ? var.pd_ssd_size : module.sap_hana.diskSize}"
+}
+
+resource "google_compute_address" "gcp_sap_hana_ip" {
+  project = "${var.project_id}"
+  name    = "${var.address_name}"
+  region  = "${var.region}"
 }
 
 resource "google_compute_instance" "gcp_sap_hana" {
+  project      = "${var.project_id}"
   name         = "${var.instance_name}"
   machine_type = "${var.instance_type}"
   zone         = "${var.zone}"
 
-  #tags           = "${var.network_tags}"
+  tags           = "${var.network_tags}"
   can_ip_forward = true
 
   scheduling {
@@ -69,7 +78,8 @@ resource "google_compute_instance" "gcp_sap_hana" {
   }
 
   network_interface {
-    subnetwork = "${var.subnetwork}"
+    subnetwork         = "${var.subnetwork}"
+    subnetwork_project = "${var.project_id}"
 
     access_config {
       nat_ip = "${element(google_compute_address.gcp_sap_hana_ip.*.address, count.index)}"
@@ -86,12 +96,12 @@ resource "google_compute_instance" "gcp_sap_hana" {
     sap_hana_system_password   = "${var.sap_hana_system_password}"
     sap_hana_sidadm_uid        = "${var.sap_hana_sidadm_uid}"
     sap_hana_sapsys_gid        = "${var.sap_hana_sapsys_gid}"
+
+    startup-script = "${var.startup_script}"
   }
 
-  metadata_startup_script = "${file("${path.module}/files/startup.sh")}"
-
   service_account {
-    email  = "${var.service_account}"
+    email  = "${var.service_account_email}"
     scopes = ["cloud-platform"]
   }
 }
