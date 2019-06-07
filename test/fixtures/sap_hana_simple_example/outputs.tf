@@ -14,14 +14,22 @@
  * limitations under the License.
  */
 
+output "sap_hana_sid" {
+  description = "SAP Hana SID user"
+  value       = "${module.example.sap_hana_sid}"
+}
+
+output "project_id" {
+  description = "The ID of the project in which resources are provisioned."
+  value       = "${var.project_id}"
+}
+
 output "instance_name" {
-  value = "${google_compute_instance.gcp_sap_hana.name}"
+  description = "Name of the instance"
+  value       = "${module.example.instance_name}"
 }
 
 output "zone" {
-  value = "${google_compute_instance.gcp_sap_hana.zone}"
-}
-
-output "machine_type" {
-  value = "${google_compute_instance.gcp_sap_hana.machine_type}"
+  description = "Compute Engine instance deployment zone"
+  value       = "${module.example.zone}"
 }

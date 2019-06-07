@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
-output "instance_name" {
-  value = "${google_compute_instance.gcp_sap_hana.name}"
+output "sap_hana_sid" {
+  description = "SAP Hana SID user"
+  value       = "${var.sap_hana_sid}"
 }
 
-output "zone" {
-  value = "${google_compute_instance.gcp_sap_hana.zone}"
+output "primary_instance_name" {
+  description = "Name of sap primary instance"
+  value       = "${var.primary_instance_name}"
 }
 
-output "machine_type" {
-  value = "${google_compute_instance.gcp_sap_hana.machine_type}"
+output "secondary_instance_name" {
+  description = "Name of sap secondary instance"
+  value       = "${var.secondary_instance_name}"
 }
